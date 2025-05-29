@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,11 +30,14 @@ public class Task {
 	private String name;
 	@Enumerated(EnumType.STRING)
 	private State state =State.CREATED;
-	private Long list;
 	
 	public enum State{
 		CREATED, FINALIZED
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "task_list_id")
+	private TaskList taskList;
 	
 
 }
