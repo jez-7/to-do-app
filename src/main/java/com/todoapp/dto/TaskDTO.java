@@ -1,5 +1,6 @@
 package com.todoapp.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.todoapp.entity.Task.State;
 
 
@@ -15,5 +16,6 @@ public class TaskDTO {
 	private Long id;
 	private String name;
 	private State state = State.CREATED;
+	@JsonProperty("taskListId")
 	private Long taskList;
 }

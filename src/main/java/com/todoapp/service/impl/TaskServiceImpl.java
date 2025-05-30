@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.todoapp.dto.TaskDTO;
 import com.todoapp.entity.Task;
+import com.todoapp.entity.TaskList;
+import com.todoapp.repository.IListRepository;
 import com.todoapp.repository.ITaskRepository;
 import com.todoapp.service.ITaskService;
 
@@ -19,6 +21,8 @@ public class TaskServiceImpl implements ITaskService{
 	
 	@Autowired
 	private ITaskRepository taskRepository;
+	@Autowired
+	private IListRepository listRepository;
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -43,13 +47,14 @@ public class TaskServiceImpl implements ITaskService{
 	@Transactional
 	@Override
 	public TaskDTO save(TaskDTO taskDTO) {
-		try {
-			Task task = modelMapper.map(taskDTO, Task.class);
-			return modelMapper.map(taskRepository.save(task), TaskDTO.class);
-		} catch (Exception e) {
-			throw new UnsupportedOperationException("Error");
-		}
-
+		
+		TaskList taskList = listRepository.findById(taskDTO.getTaskList())
+				.orElseThrow();
+		Task task = modelMapper.map(taskDTO, Task.class);
+		task.setTaskList(taskList);
+		
+		Task savedTask = taskRepository.save(task);
+		return modelMapper.map(savedTask, TaskDTO.class);
 	}
 	
 	@Transactional
