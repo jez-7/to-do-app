@@ -1,11 +1,16 @@
 package com.todoapp.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.todoapp.dto.TaskDTO;
 import com.todoapp.entity.Task;
+import com.todoapp.entity.TaskList;
+import com.todoapp.repository.IListRepository;
 import com.todoapp.repository.ITaskRepository;
 import com.todoapp.service.ITaskService;
 
@@ -16,30 +21,53 @@ public class TaskServiceImpl implements ITaskService{
 	
 	@Autowired
 	private ITaskRepository taskRepository;
+	@Autowired
+	private IListRepository listRepository;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
-	public List<Task> findAll() {
-		return taskRepository.findAll();
+	public List<TaskDTO> findAll() {
+		
+		return taskRepository.findAll()
+				.stream()
+				.map(entity -> modelMapper.map(entity, TaskDTO.class))
+				.collect(Collectors.toList())
+				;
 	}
 
 	@Transactional
 	@Override
-	public Task findById(Long id) {
-		return taskRepository.findById(id).
-				orElse(null);
+	public TaskDTO findById(Long id) {
+		return modelMapper.map(taskRepository.findById(id).
+				orElseThrow(() -> new RuntimeException("Task not found with id: " + id)),
+				TaskDTO.class);
 	}
 
 	@Transactional
 	@Override
-	public Task save(Task task) {
-		return taskRepository.save(task);
+	public TaskDTO save(TaskDTO taskDTO) {
+		
+		TaskList taskList = listRepository.findById(taskDTO.getTaskList())
+				.orElseThrow();
+		Task task = modelMapper.map(taskDTO, Task.class);
+		task.setTaskList(taskList);
+		
+		Task savedTask = taskRepository.save(task);
+		return modelMapper.map(savedTask, TaskDTO.class);
 	}
 	
 	@Transactional
 	@Override
-	public Task update(Long id, Task task) {
-		task.setId(id);
-		return taskRepository.save(task);
+	public TaskDTO update(Long id, TaskDTO taskDTO) {
+		
+		Task task = taskRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
+		
+		modelMapper.map(taskDTO, task);
+		Task taskUpdate = taskRepository.save(task);
+		
+		return modelMapper.map(taskUpdate, TaskDTO.class);
 	}
 	
 	@Transactional

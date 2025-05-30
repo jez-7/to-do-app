@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todoapp.entity.Task;
-import com.todoapp.entity.Task.State;
+import com.todoapp.dto.TaskDTO;
 import com.todoapp.service.ITaskService;
 
 @RestController
@@ -26,28 +24,29 @@ public class TaskController {
 	@Autowired
 	private ITaskService taskService;
 	
+	
 	@GetMapping
-	public ResponseEntity<List<Task>> getAll(){
-		List<Task> getAll = taskService.findAll();
+	public ResponseEntity<List<TaskDTO>> getAll(){
+		List<TaskDTO> getAll = taskService.findAll();
 		return ResponseEntity.ok(getAll);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Task> getById(@PathVariable Long id) {
-		Task getById = taskService.findById(id);
+	public ResponseEntity<TaskDTO> getById(@PathVariable Long id) {
+		TaskDTO getById = taskService.findById(id);
 		return ResponseEntity.ok(getById);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Task> create(@RequestBody Task task){
+	public ResponseEntity<TaskDTO> create(@RequestBody TaskDTO taskDTO){
 		
-		Task create = taskService.save(task); 
+		TaskDTO create = taskService.save(taskDTO); 
 		return ResponseEntity.status(HttpStatus.CREATED).body(create);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task task){
-		Task update = taskService.update(id, task);
+	public ResponseEntity<TaskDTO> update(@PathVariable Long id, @RequestBody TaskDTO taskDTO){
+		TaskDTO update = taskService.update(id, taskDTO);
 		return ResponseEntity.ok(update);
 	}
 	
