@@ -26,8 +26,4 @@ public class TaskList {
 	private Long id;
 	private String name;
 	
-	@OneToMany(mappedBy = "taskList", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Task> task = new ArrayList<>();
-	
-	
 }
