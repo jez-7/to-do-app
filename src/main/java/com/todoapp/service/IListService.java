@@ -1,16 +1,15 @@
 package com.todoapp.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.todoapp.entity.TaskList;
+import com.todoapp.dto.ListDTO;
 
 public interface IListService {
 	
-	Optional<TaskList> findById(Long id);
-	List<TaskList> findAll();
-	TaskList save(TaskList taskList);
-	TaskList update(Long id, TaskList taskList);
+	ListDTO findById(Long id);
+	List<ListDTO> findAll();
+	ListDTO save(ListDTO listDTO);
+	ListDTO update(Long id, ListDTO dto);
 	void deleteById(Long id);
 
 }

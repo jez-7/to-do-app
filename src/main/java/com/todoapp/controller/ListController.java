@@ -1,7 +1,6 @@
 package com.todoapp.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todoapp.entity.TaskList;
+import com.todoapp.dto.ListDTO;
 import com.todoapp.service.IListService;
 
 @RestController
@@ -26,28 +25,28 @@ public class ListController {
 	private IListService service;
 	
 	@GetMapping
-	public ResponseEntity<List<TaskList>> getAll() {
-		List<TaskList> taskList = service.findAll();
+	public ResponseEntity<List<ListDTO>> getAll() {
+		List<ListDTO> taskList = service.findAll();
 		return ResponseEntity.ok(taskList);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<TaskList>> getById(@PathVariable Long id){
-		Optional<TaskList> taskList = service.findById(id);
+	public ResponseEntity<ListDTO> getById(@PathVariable Long id){
+		ListDTO taskList = service.findById(id);
 		return ResponseEntity.ok(taskList);
 	}
 	
 	@PostMapping
-	public ResponseEntity<TaskList> save(@RequestBody TaskList newList) {
-		TaskList taskList = service.save(newList);
-		return new ResponseEntity<>(taskList, HttpStatus.CREATED);
+	public ResponseEntity<ListDTO> save(@RequestBody ListDTO dto) {
+		ListDTO saved = service.save(dto);
+	    return ResponseEntity.status(HttpStatus.CREATED).body(saved);
 		
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<TaskList> update(@PathVariable Long id, @RequestBody TaskList editedList) {
-		TaskList taskList = service.update(id, editedList);
-		return ResponseEntity.ok(taskList);
+	public ResponseEntity<ListDTO> update(@PathVariable Long id, @RequestBody ListDTO dto) {
+		ListDTO updated = service.update(id, dto);
+		return ResponseEntity.ok(updated);
 	}
 	
 	@DeleteMapping("/{id}")
