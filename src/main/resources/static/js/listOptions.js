@@ -64,7 +64,7 @@ async function editList() {
         
       } catch (err) {
         console.error('Error updating list name:', err);
-        // En caso de error, restaurar el nombre original
+         
         const restoredSpan = document.createElement('span');
         restoredSpan.className = 'list-name';
         restoredSpan.textContent = currentName;
@@ -106,7 +106,7 @@ async function deleteList() {
   const id = getListIdFromURL();
   if (!id) return;
   
-  const confirmDelete = confirm('Are you sure you want to delete this list?');
+  const confirmDelete = confirm('Seguro que quieres eliminar esta lista?');
   if (confirmDelete) {
     try {
       const response = await fetch(`http://localhost:8080/api/list/${id}`, {

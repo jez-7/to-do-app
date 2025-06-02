@@ -25,7 +25,7 @@ async function createList(event) {
         const data = await response.json();
         console.log('List created:', data);
 
-        // Limpiar y ocultar input
+      
         event.target.value = '';
         event.target.style.display = 'none';
         document.querySelector('.new-list').style.display = 'inline-block';
