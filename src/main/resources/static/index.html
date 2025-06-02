@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ToDoApp</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+		<a href="index.html">
+		  <div class="logo">To Do App</div>
+		</a>
+      <div class="lists">
+        <h4>Listas</h4>
+        <ul>
+           
+          <li class="task-list-listing"></li>
+          
+        </ul>
+		<div class="nueva-lista-container">
+		  <button class="new-list" onclick="showInputNewList()"><i class="fa fa-plus"></i>Nueva lista</button>
+		  <input type="text" class="input-new-list" placeholder="Nombre de la lista" onkeydown="createList(event)" style="display: none;">
+		</div>
+      </div>
+    </aside>
+
+    <main class="main-content-index">
+       <h1 class="welcome">¡Bienvenido!</h1>
+	   <h4>Crea o selecciona una lista para ver y gestionar tus tareas.</h4>
+	   
+    </main>
+  </div>
+  <script src="js/newlist.js"></script>
+  <script src="js/showLists.js"></script>
+</body>
+</html>
