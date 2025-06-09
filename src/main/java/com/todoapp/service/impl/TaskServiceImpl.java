@@ -76,4 +76,13 @@ public class TaskServiceImpl implements ITaskService{
 		taskRepository.deleteById(id);
 	}
 
+	@Override
+	public List<TaskDTO> findTaskByTaskListId(Long taskListId) {
+		return taskRepository.findTaskByTaskListId(taskListId)
+				.stream()
+				.map(entity -> modelMapper.map(entity, TaskDTO.class))
+				.collect(Collectors.toList());
+	}
+
+
 }

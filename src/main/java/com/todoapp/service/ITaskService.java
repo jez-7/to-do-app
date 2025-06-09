@@ -12,4 +12,5 @@ public interface ITaskService {
 	TaskDTO save(TaskDTO taskDTO);
 	TaskDTO update(Long id, TaskDTO taskDTO);
 	void delete(Long id);
+	List<TaskDTO> findTaskByTaskListId(Long taskListId);
 }

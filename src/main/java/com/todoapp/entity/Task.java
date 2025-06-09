@@ -28,6 +28,7 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String description;
 	@Enumerated(EnumType.STRING)
 	private State state =State.CREATED;
 	
