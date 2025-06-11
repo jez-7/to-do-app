@@ -33,7 +33,9 @@ async function showTasks() {
     for (let task of tasks) {
       taskHtml += `
         <div class="tarea-container">
-          <div class="tarea" onclick="toggleDescripcion(this)">
+          <div class="tarea" onclick="toggleDescripcion(this)" data-task-id="${
+            task.id
+          }">
             <div class="tarea-izquierda">
               <i class="far fa-circle" onclick="event.stopPropagation(); toggleCompletado(this)"></i>
               <span>${task.name}</span>
