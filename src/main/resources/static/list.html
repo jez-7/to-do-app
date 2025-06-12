@@ -1,90 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ToDoApp</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoApp</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
 
-</head>
+  <script>
+    function toggleDescripcion(tareaDiv) {
+      const contenedor = tareaDiv.closest(".tarea-container");
+      const descripcion = contenedor.querySelector(".descripcion");
+      descripcion.classList.toggle("visible");
+    }
+  </script>
 
-<script>
-	
-  function toggleDescripcion(tareaDiv) {
-    const contenedor = tareaDiv.closest('.tarea-container');
-    const descripcion = contenedor.querySelector('.descripcion');
-    descripcion.classList.toggle('visible');
-  }
-  
-  function toggleCompletado(icon) {
-     
-     if (icon.classList.contains('fas')) {
-       icon.classList.remove('fas', 'fa-check-circle', 'completado');
-       icon.classList.add('far', 'fa-circle');
-     } else {
-       icon.classList.remove('far', 'fa-circle');
-       icon.classList.add('fas', 'fa-check-circle', 'completado');
-     }
-   }
-</script>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <a href="index.html">
+          <div class="logo">To Do App</div>
+        </a>
+        <div class="lists">
+          <h4>Listas</h4>
+          <ul>
+            <li class="task-list-listing"></li>
+          </ul>
+          <div class="nueva-lista-container">
+            <button class="new-list" onclick="showInputNewList()">
+              <i class="fa fa-plus"></i>Nueva lista
+            </button>
+            <input
+              type="text"
+              class="input-new-list"
+              placeholder="Nombre de la lista"
+              onkeydown="createList(event)"
+              style="display: none"
+            />
+          </div>
+        </div>
+      </aside>
 
-<body>
-  <div class="container">
-    <aside class="sidebar">
-		<a href="index.html">
-		  <div class="logo">To Do App</div>
-		</a>
-      <div class="lists">
-        <h4>Listas</h4>
-		<ul>    
-		   <li class="task-list-listing"></li>  
-		</ul>
-		<div class="nueva-lista-container">
-		   <button class="new-list" onclick="showInputNewList()"><i class="fa fa-plus"></i>Nueva lista</button>
-	       <input type="text" class="input-new-list" placeholder="Nombre de la lista" onkeydown="createList(event)" style="display: none;">
+      <main class="main-content">
+        <header class="header">
+          <h2>Nombre lista</h2>
+        </header>
+
+        <section class="task-input">
+          <input
+            id="inp-add-task"
+            type="text"
+            placeholder="Agregar una tarea"
+          />
+          <button id="btn-add-task">Agregar</button>
+        </section>
+
+		<div id="tareas-pendientes"></div>
+		
+		<div class="completed"> 
+		  <details>
+		    <summary>✅ Completado <span>0</span></summary>
+		  </details>
 		</div>
-      </div>
-    </aside>
 
-    <main class="main-content">
-      <header class="header">
-        <h2>Nombre lista</h2>		 
-      </header>
-	  
 
-      <section class="task-input">
-        <input type="text" placeholder="Agregar una tarea" />
-        <button>Agregar</button>
-      </section>
 
-	  <div class="tarea-container">
-	    <div class="tarea" onclick="toggleDescripcion(this)">
-	      <div class="tarea-izquierda">
-	        <i class="far fa-circle" onclick="event.stopPropagation(); toggleCompletado(this)"></i>
-	        <span>Tarea ejemplo</span>
-	      </div>
-	      <div class="tarea-derecha">
-	        <i class="fas fa-pen" onclick="event.stopPropagation(); editTask(this)"></i>
-	        <i class="far fa-star" onclick="event.stopPropagation(); toggleImportante(this)"></i>
-	        <i class="fas fa-trash-alt" onclick="event.stopPropagation(); deleteTask(this)"></i>
-	      </div>
-	    </div>
-	    <div class="descripcion">
-	      Esta es la descripción de la tarea.
-	    </div>
-	  </div>
-
-      <div class="completed">
-        <details>
-          <summary>✅ Completado <span> 1</span></summary>
-        </details>
-      </div>
-    </main>
-  </div>
-<script src="js/newlist.js"></script>
-<script src="js/showLists.js"></script>
-<script src="js/listOptions.js"></script>
-</body>
-
+      </main>
+    </div>
+    <script src="js/newlist.js"></script>
+    <script src="js/showLists.js"></script>
+    <script src="js/listOptions.js"></script>
+    <script src="js/newTask.js"></script>
+    <script src="js/showTasks.js"></script>
+    <script src="js/optionsTasks.js"></script>
+	<script src="js/taskCompleted.js"></script>
+  </body>
 </html>
