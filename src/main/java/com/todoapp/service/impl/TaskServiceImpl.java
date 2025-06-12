@@ -84,5 +84,17 @@ public class TaskServiceImpl implements ITaskService{
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public TaskDTO changeState(Long id, TaskDTO taskDTO) {
+		Task task = taskRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
+		task.setState(taskDTO.getState()); 
+		taskRepository.save(task);
+		
+		return modelMapper.map(task, TaskDTO.class);
+	}
+	
+	
+
 
 }

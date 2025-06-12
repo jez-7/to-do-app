@@ -61,4 +61,12 @@ public class TaskController {
 		taskService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 	}
+	
+	@PutMapping("changeState/{id}")
+	public ResponseEntity<TaskDTO> changeState(@PathVariable Long id, @RequestBody TaskDTO taskDTO){
+		TaskDTO changeState = taskService.changeState(id, taskDTO);
+		return ResponseEntity.ok(changeState);
+
+		 
+	}
 }

@@ -1,16 +1,13 @@
 async function editTask(element) {
   try {
-    const taskId = element.closest(".tarea").dataset.taskId;
-
     const tareaDiv = element.closest(".tarea");
+    const taskId = tareaDiv.dataset.taskId;
+    const currentState = tareaDiv.dataset.state || "CREATED";  
+
     const currentName = tareaDiv.querySelector("span").textContent;
     const currentDescription = tareaDiv
       .closest(".tarea-container")
       .querySelector(".descripcion").textContent;
-
-    console.log("Editando tarea ID:", taskId);
-    console.log("Nombre actual:", currentName);
-    console.log("Descripción actual:", currentDescription);
 
     const newName = prompt("Nuevo nombre de la tarea:", currentName);
     const newDescription = prompt(
@@ -27,6 +24,7 @@ async function editTask(element) {
         body: JSON.stringify({
           name: newName.trim(),
           description: newDescription || "",
+          state: currentState 
         }),
       });
 
@@ -41,6 +39,7 @@ async function editTask(element) {
     console.error("Error editando tarea:", error.message);
   }
 }
+
 async function deleteTask(element) {
   try {
     const taskId = element.closest(".tarea").dataset.taskId;

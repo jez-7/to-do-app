@@ -288,11 +288,13 @@ a {
 
 .completed {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .completed summary {
   cursor: pointer;
   color: #888;
+  margin-bottom: 20px;
 }
 
 .menu-container {

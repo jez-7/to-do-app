@@ -23,7 +23,7 @@ async function createTask(event) {
       },
       body: JSON.stringify({
         name: nombre,
-        description: "probando",
+        description: "Sin descripción",
         taskListId: parseInt(listId),
       }),
     });

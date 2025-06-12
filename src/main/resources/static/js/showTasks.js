@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   showTasks();
+  showCompletedTasks();
 });
 
 async function showTasks() {
@@ -7,15 +8,12 @@ async function showTasks() {
     const params = new URLSearchParams(window.location.search);
     const listId = params.get("id");
 
-    const response = await fetch(
-      `http://localhost:8080/api/task/list/${listId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`http://localhost:8080/api/task/list/${listId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (!response.ok) {
       throw new Error("Error trying to show tasks");
@@ -23,21 +21,18 @@ async function showTasks() {
 
     const tasks = await response.json();
 
-    const existingTasks = document.querySelectorAll(
-      ".tarea-container:not(:last-child)"
-    );
-    existingTasks.forEach((task) => task.remove());
-
-    let taskHtml = "";
+    const tareasPendientes = [];
+    const tareasCompletadas = [];
 
     for (let task of tasks) {
-      taskHtml += `
+		
+      const isFinalized = task.state === "FINALIZED";
+
+      const tareaHTML = `
         <div class="tarea-container">
-          <div class="tarea" onclick="toggleDescripcion(this)" data-task-id="${
-            task.id
-          }">
+          <div class="tarea" onclick="toggleDescripcion(this)" data-task-id="${task.id}" data-state="${task.state}">
             <div class="tarea-izquierda">
-              <i class="far fa-circle" onclick="event.stopPropagation(); toggleCompletado(this)"></i>
+              <i class="${isFinalized ? 'fas' : 'far'} fa-circle" onclick="event.stopPropagation(); toggleCompleted(this)"></i>
               <span>${task.name}</span>
             </div>
             <div class="tarea-derecha">
@@ -46,19 +41,61 @@ async function showTasks() {
               <i class="fas fa-trash-alt" onclick="event.stopPropagation(); deleteTask(this)"></i>
             </div>
           </div>
-          <div class="descripcion">${
-            task.description || "Sin descripción"
-          }</div>
+          <div class="descripcion">${task.description || "Sin descripción"}</div>
         </div>
       `;
+
+      if (isFinalized) {
+        tareasCompletadas.push(tareaHTML);
+      } else {
+        tareasPendientes.push(tareaHTML);
+      }
     }
 
-    const completedSection = document.querySelector(".completed");
+     
+    const tareasContainer = document.getElementById("tareas-pendientes");
+    tareasContainer.innerHTML = tareasPendientes.join("");
 
-    if (taskHtml) {
-      completedSection.insertAdjacentHTML("beforebegin", taskHtml);
-    }
+    
+    const completedDetails = document.querySelector(".completed details");
+    completedDetails.innerHTML = `
+      <summary>✅ Completado <span>${tareasCompletadas.length}</span></summary>
+      ${tareasCompletadas.join("")}
+    `;
+
   } catch (error) {
     console.error("Error mostrando tareas:", error.message);
   }
 }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
