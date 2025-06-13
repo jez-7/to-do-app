@@ -16,7 +16,7 @@ async function editTask(element) {
     );
 
     if (newName !== null && newName.trim() !== "") {
-      const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
+      const response = await fetch(`https://to-do-app-steq.onrender.com/api/task/${taskId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,7 @@ async function deleteTask(element) {
     );
 
     if (confirmDelete) {
-      const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
+      const response = await fetch(`https://to-do-app-steq.onrender.com/api/task/${taskId}`, {
         method: "DELETE",
       });
 
