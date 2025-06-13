@@ -10,7 +10,7 @@ async function createList(event) {
     const nombre = event.target.value.trim();
     if (nombre !== '') {
       try {
-        const response = await fetch('http://localhost:8080/api/list', {
+        const response = await fetch('https://to-do-app-steq.onrender.com/api/list', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
