@@ -40,7 +40,7 @@ async function editList() {
       if (!id) return;
       
       try {
-        const response = await fetch(`http://localhost:8080/api/list/${id}`, {
+        const response = await fetch(`https://to-do-app-steq.onrender.com/api/list/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ async function deleteList() {
   const confirmDelete = confirm('Seguro que quieres eliminar esta lista?');
   if (confirmDelete) {
     try {
-      const response = await fetch(`http://localhost:8080/api/list/${id}`, {
+      const response = await fetch(`https://to-do-app-steq.onrender.com/api/list/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Failed to delete list');
