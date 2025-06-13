@@ -1,6 +1,5 @@
 package com.todoapp.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -25,5 +24,8 @@ public class TaskList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	@OneToMany(mappedBy = "taskList", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<Task> tasks;
 	
 }
