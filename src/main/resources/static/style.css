@@ -1,0 +1,340 @@
+
+
+body {
+      background-color: #1e1e1e;
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+       
+}
+
+.tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2d2d2d;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+.tarea:hover {
+    background-color: #3a3a3a;
+  }
+
+.tarea-izquierda {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+.tarea-izquierda i {
+      color: #58b97d;
+      font-size: 16px;
+      margin-right: 12px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    
+.completado {
+  color: #4caf50;  
+}
+
+.tarea-derecha i {
+      color: #58b97d;
+      margin-left: 16px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+.tarea-derecha i:hover {
+      color: #ffffff;
+    }
+    
+.descripcion {
+    background-color: #1e1e1e;
+    padding: 10px 15px;
+    color: #ccc;
+    display: none;
+    margin-top: -5px;
+    border-radius: 0 0 5px 5px;
+    font-size: 14px;
+  }
+
+.descripcion.visible {
+    display: block;
+  }    
+
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: #252526;
+  width: 250px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: #ddd;
+}
+
+.sidebar .logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.menu, .lists ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li, .lists ul li {
+  padding: 8px 0;
+   
+  cursor: pointer;
+  border-radius: 5px;
+  
+}
+
+.fa-list-ul{
+	margin-right: 30px;
+}
+.fa-plus{
+	margin-right: 20px;
+}
+
+.fa-ellipsis-v{
+	margin-left: 18px;
+}
+
+
+.task-list-listing {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list-listing li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.task-list-listing li:hover {
+  color: #59ee2b;
+}
+.icono {
+  margin-right: 8px; /* o el espacio que prefieras */
+}
+
+ 
+
+.lists {
+  font-size: 15px;
+  margin-top: 0px;
+  
+  flex-grow: 1;
+}
+
+.lists h4 {
+  margin-bottom: 10px;
+  color: #aaa;
+}
+
+.lists li.active {
+  margin-left: -10px;  
+  margin-top: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 200px;
+  background-color: #4a555e;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none; 
+  color: inherit;         
+}
+ 
+
+.new-list {
+  background: none;
+  border: none;
+  color: #59ee2b;
+  cursor: pointer;
+  padding-top: 5px;
+  font-size: 17px;
+}
+
+.input-new-list{
+  padding: 6px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background-color: #333;
+  color: white;
+}
+
+.new-list:hover {
+  color: aliceblue; 
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #1e1e1e;
+}
+
+.main-content-index {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  text-align: center;
+  font-size: 25px;
+}
+
+.main-content-index h1{
+   margin-bottom: 0.5rem;
+}
+
+.main-content-index h4{
+   margin-top: 0;
+}
+ 
+.welcome {
+	
+	color: #59ee2b;
+}
+
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.view-switch button,
+.header-actions button {
+  background: none;
+  border: none;
+  color: #27a055;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.view-switch .active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.task-input {
+  display: flex;
+  margin: 20px 0;
+}
+
+.task-input input {
+  flex: 1;
+  padding: 10px;
+  background-color: #2d2d30;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.task-input button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  background-color: #27a055;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  background-color: #2d2d30;
+  margin: 10px 0;
+  padding: 12px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-list li:hover {
+  background-color: #3c3c3c;
+}
+
+.completed {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.completed summary {
+  cursor: pointer;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.menu-container {
+  display: inline-block;
+  position: relative;  
+}
+
+.menu-icon {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.dropdown-menu {
+  left: auto;
+  transform: none;	
+  position: absolute;
+  top: 40px; 
+  right: 2;
+  background-color: #333;
+  border-radius: 5px;
+  display: none;
+  flex-direction: column;
+  padding: 5px;
+  z-index: 1000;
+  min-width: 120px;
+}
+
+.dropdown-menu button {
+	
+  background: none;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background-color: #444;
+}
+
+ 
