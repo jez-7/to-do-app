@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', showListName);
 // get and show lists
 async function showLists() {
   try {
-    const response = await fetch('http://localhost:8080/api/list', {
+    const response = await fetch('https://to-do-app-steq.onrender.com/api/list', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ async function showListName() {
   if (!id) return;
 
   try {
-    const response = await fetch(`http://localhost:8080/api/list/${id}`);
+    const response = await fetch(`https://to-do-app-steq.onrender.com/api/list/${id}`);
     if (!response.ok) throw new Error('Failed to fetch list');
 
     const list = await response.json();
