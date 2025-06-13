@@ -7,7 +7,7 @@ async function toggleCompleted(element) {
 
     const newState = currentState === "FINALIZED" ? "CREATED" : "FINALIZED";
 
-    const response = await fetch(`http://localhost:8080/api/task/changeState/${taskId}`, {
+    const response = await fetch(`https://to-do-app-steq.onrender.com/api/task/changeState/${taskId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
