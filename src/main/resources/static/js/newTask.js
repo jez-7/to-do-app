@@ -16,7 +16,7 @@ async function createTask(event) {
   if (event.type === "keydown" && event.key !== "Enter") return;
 
   try {
-    const response = await fetch("http://localhost:8080/api/task", {
+    const response = await fetch("https://to-do-app-steq.onrender.com/api/task", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
