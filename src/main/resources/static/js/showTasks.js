@@ -8,7 +8,7 @@ async function showTasks() {
     const params = new URLSearchParams(window.location.search);
     const listId = params.get("id");
 
-    const response = await fetch(`http://localhost:8080/api/task/list/${listId}`, {
+    const response = await fetch(`https://to-do-app-steq.onrender.com/api/task/list/${listId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
