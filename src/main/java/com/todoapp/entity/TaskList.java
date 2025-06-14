@@ -25,5 +25,8 @@ public class TaskList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+
+	@OneToMany(mappedBy = "taskList", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<Task> tasks;
 	
 }
