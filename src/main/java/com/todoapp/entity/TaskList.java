@@ -27,8 +27,6 @@ public class TaskList {
 
 	@OneToMany(mappedBy = "taskList", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Task> tasks;
-	
-	@OneToMany(mappedBy = "taskList", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<Task> tasks;
+	 
 	
 }
